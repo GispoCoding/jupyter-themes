@@ -74,10 +74,12 @@ def less_to_css(style_less):
     os.chdir(package_dir)
     style_css = lesscpy.compile(tempfile)
     style_css += '\n\n'
+    print(style_css)
     return style_css
 
 def write_final_css(style_css):
     # install style_css to .jupyter/custom/custom.css
+    print(jupyter_customcss)
     with fileOpen(jupyter_customcss, 'w') as custom_css:
         custom_css.write(style_css)
 
@@ -261,7 +263,7 @@ def style_layout(style_less,
     tcPromptFontsize = "@prompt-fontsize"
     ccOutputBG = '@cc-output-bg-default'
 
-    if theme == 'grade3':
+    if theme in ['grade3', 'gispo']:
         textcell_bg = '@notebook-bg'
     if altprompt:
         promptPadding = '.1em'
@@ -482,7 +484,7 @@ def set_nb_theme(name):
 
 
 def get_colors(theme='grade3', c='default', get_dict=False):
-    if theme == 'grade3':
+    if theme in  ['grade3', 'gispo']:
         cdict = {'default': '#ff711a',
                  'b': '#1e70c7',
                  'o': '#ff711a',
@@ -547,6 +549,7 @@ def stored_font_dicts(fontcode, get_all=False):
               'ubuntu': ['Ubuntu Mono', 'ubuntu']},
              'sans':
              {'droidsans': ['Droid Sans', 'droidsans'],
+              'karla': ['Karla', 'karla'],
               'opensans': ['Open Sans', 'opensans'],
               'ptsans': ['PT Sans', 'ptsans'],
               'sourcesans': ['Source Sans Pro', 'sourcesans'],
