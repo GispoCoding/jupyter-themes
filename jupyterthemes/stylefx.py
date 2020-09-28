@@ -70,16 +70,14 @@ def less_to_css(style_less):
     """ write less-compiled css file to jupyter_customcss in jupyter_dir
     """
     with fileOpen(tempfile, 'w') as f:
-            f.write(style_less)
+        f.write(style_less)
     os.chdir(package_dir)
     style_css = lesscpy.compile(tempfile)
     style_css += '\n\n'
-    print(style_css)
     return style_css
 
 def write_final_css(style_css):
     # install style_css to .jupyter/custom/custom.css
-    print(jupyter_customcss)
     with fileOpen(jupyter_customcss, 'w') as custom_css:
         custom_css.write(style_css)
 
