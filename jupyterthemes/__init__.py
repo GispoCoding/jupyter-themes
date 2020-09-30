@@ -2,8 +2,8 @@ import os
 import sys
 from argparse import ArgumentParser
 from glob import glob
-from . import stylefx
-from . import jtplot
+import stylefx
+import jtplot
 
 # path to local site-packages/jupyterthemes
 package_dir = os.path.dirname(os.path.realpath(__file__))
@@ -312,3 +312,6 @@ def main():
         nbname=args.nbname,
         kernellogo=args.kernellogo,
         dfonts=args.defaultfonts)
+
+if __name__ == '__main__':
+    main()
