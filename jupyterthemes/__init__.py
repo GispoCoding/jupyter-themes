@@ -2,8 +2,13 @@ import os
 import sys
 from argparse import ArgumentParser
 from glob import glob
-import stylefx
-import jtplot
+try:
+    from . import stylefx
+    from . import jtplot
+except ModuleNotFoundError:
+    import stylefx
+    import jtplot
+
 
 # path to local site-packages/jupyterthemes
 package_dir = os.path.dirname(os.path.realpath(__file__))
