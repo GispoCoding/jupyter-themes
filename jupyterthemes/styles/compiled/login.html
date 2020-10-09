@@ -1,0 +1,75 @@
+{% extends "page.html" %}
+
+
+{% block stylesheet %}
+{{super()}}
+<link rel="stylesheet" href="{{ static_url("auth/css/override.css") }}" type="text/css" />
+{% endblock %}
+
+{% block login_widget %}
+{% endblock %}
+
+{% block site %}
+
+<div id="ipython-main-app" class="container">
+
+
+    {% if message %}
+      <div class="row">
+      {% for key in message %}
+        <div class="message {{key}}">
+           {{message[key]}}
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    {% if token_available %}
+    {% block token_message %}
+
+    <div class="col-sm-6 col-sm-offset-3 text-left rendered_html">
+        <img src="https://www.gispo.fi/wp-content/uploads/2015/09/gispo-logo.png"/>
+      <h3>
+        Otsikko
+      </h3>
+      <p>
+        Tähän sisältöä
+      </p>
+    </div>
+    {% endblock token_message %}
+    {% endif %}
+
+    {% if login_available %}
+    {# login_available means password-login is allowed. Show the form. #}
+    <div class="row">
+
+        <form action="{{base_url}}login?next={{next}}" method="post" class="navbar-form pull-left">
+            {{ xsrf_form_html() | safe }}
+            {% if token_available %}
+            <label for="password_input"><strong>{% trans %}Anna kurssi-token:{% endtrans %}</strong></label>
+            {% else %}
+            <label for="password_input"><strong>{% trans %}Salasana:{% endtrans %}</strong></label>
+            {% endif %}
+            <input type="password" name="password" id="password_input" class="form-control">
+            <button type="submit" class="btn btn-default" id="login_submit">{% trans %}Kirjaudu{% endtrans %}</button>
+        </form>
+
+    </div>
+    {% else %}
+    <p>{% trans %}No login available, you shouldn't be seeing this page.{% endtrans %}</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+{{super()}}
+
+<script type="text/javascript">
+  require(["auth/js/main"], function (auth) {
+    auth.login_main();
+  });
+</script>
+
+{% endblock %}
