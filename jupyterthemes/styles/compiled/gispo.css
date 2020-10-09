@@ -2060,7 +2060,7 @@
    
    div.text_cell_render h1,
    div.rendered_html h1 {
-       margin: 0px 0px 20px 0px !important;
+       margin: 20px 0px 20px 0px !important;
        font-weight: 600;
        letter-spacing: 2px;
        text-transform: uppercase;
@@ -2068,7 +2068,10 @@
    
    div.text_cell_render h2,
    div.rendered_html h2 {
-        margin: 0px 0px 20px 0px !important;
+        margin: 20px 0px 20px 0px !important;
+        padding: 15px 15px 15px 30px;
+        background: linear-gradient(120deg, #eeeeee, transparent 50%);
+        border-radius: 50px;
    }
    
    div.text_cell_render h3,
